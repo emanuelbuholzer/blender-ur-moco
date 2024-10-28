@@ -3,7 +3,7 @@ import bpy
 from urmoco.capabilities import CAP_BRAKE, CAP_FREEDRIVE, CAP_POWER, CAP_CALIBRATION
 from urmoco.config import Config
 from urmoco.blender.state import Mode, get_mode, get_status_text
-from urmoco.blender.constants import ARMATURE_MODEL
+from urmoco.blender.constants import (ARMATURE_MODEL, CONSTRAINT_IK)
 
 def get_urmoco_panel(config: Config):
     class URMocoPanel(bpy.types.Panel):
@@ -81,7 +81,7 @@ def get_urmoco_panel(config: Config):
             row.enabled = state is not Mode.AWAIT_RESPONSE
             ik_enabled = (
                 bpy.data.objects[ARMATURE_MODEL]
-                .pose.bones[BONE_WRIST_JOINT_3]
+                .pose.bones["Bone.005"]
                 .constraints[CONSTRAINT_IK]
                 .enabled
             )
