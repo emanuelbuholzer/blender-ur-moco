@@ -135,13 +135,13 @@ def get_operators(_config: Config, _scheduler: Scheduler):
 
             bpy.ops.pose.visual_transform_apply()
 
-            bpy.data.objects[ARMATURE_MODEL].pose.bones[BONE_IK_CONTROL].constraints[
+            bpy.data.objects[ARMATURE_MODEL].pose.bones["IK Control"].constraints[
                 CONSTRAINT_COPY_LOCATION
             ].enabled = True
-            bpy.data.objects[ARMATURE_MODEL].pose.bones[BONE_IK_CONTROL].constraints[
+            bpy.data.objects[ARMATURE_MODEL].pose.bones["IK Control"].constraints[
                 CONSTRAINT_COPY_ROTATION
             ].enabled = True
-            bpy.data.objects[ARMATURE_MODEL].pose.bones[BONE_WRIST_JOINT_3].constraints[
+            bpy.data.objects[ARMATURE_MODEL].pose.bones["Bone.005"].constraints[
                 CONSTRAINT_IK
             ].enabled = False
             set_status_text("Using FK rig for robot")
