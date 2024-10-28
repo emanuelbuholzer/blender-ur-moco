@@ -39,10 +39,10 @@ def has_constraints(target_armature, target_bone):
     for constraint in (
         bpy.data.objects[target_armature].pose.bones[target_bone].constraints
     ):
-    for constraint in pose_bone(target_armature, target_bone).constraints:
-        if constraint.enabled:
-            return True
-    return False
+        for constraint in pose_bone(target_armature, target_bone).constraints:
+            if constraint.enabled:
+                return True
+        return False
 
 def select_bones(target_armature, target_bones):
     for target_bone in target_bones:
