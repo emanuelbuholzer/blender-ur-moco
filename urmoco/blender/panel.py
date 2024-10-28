@@ -3,7 +3,7 @@ import bpy
 from urmoco.capabilities import CAP_BRAKE, CAP_FREEDRIVE, CAP_POWER, CAP_CALIBRATION
 from urmoco.config import Config
 from urmoco.blender.state import Mode, get_mode, get_status_text
-
+from urmoco.blender.constants import ARMATURE_MODEL
 
 def get_urmoco_panel(config: Config):
     class URMocoPanel(bpy.types.Panel):
