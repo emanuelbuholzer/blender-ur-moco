@@ -41,4 +41,8 @@ def get_operators(config: Config, scheduler: Scheduler):
 
     operators += get_operators(config, scheduler)
 
+    from .kinematics import get_operators
+
+    operators += get_operators(config, scheduler)
+
     return operators
