@@ -17,33 +17,36 @@ from urmoco.blender.constants import (ARMATURE_GHOST, ARMATURE_MODEL,
 logger = logging.getLogger(__name__)
 
 BONES = [
-    BONE_SHOULDER_PAN,
-    BONE_SHOULDER_LIFT,
-    BONE_ELBOW,
-    BONE_WRIST_JOINT_1,
-    BONE_WRIST_JOINT_2,
-    BONE_WRIST_JOINT_3,
-    BONE_IK_CONTROL,
-]
-
-BONES = [
     "Bone",
     "Bone.001",
     "Bone.002",
     "Bone.003",
+    "Bone.006",
     "Bone.004",
     "Bone.005",
-    "Bone.006",
     "IK Control"
 ]
 
+def pose_bone(target_armature, target_bone):
+    return bpy.data.objects[target_armature].pose.bones[target_bone]
+
+
+def pose_bone_constraint(target_armature, target_bone, target_constraint):
+    return pose_bone(target_armature, target_bone).constraints[target_constraint]
+
+
 def has_constraints(target_armature, target_bone):
     for constraint in (
-            bpy.data.objects[target_armature].pose.bones[target_bone].constraints
+        bpy.data.objects[target_armature].pose.bones[target_bone].constraints
     ):
+    for constraint in pose_bone(target_armature, target_bone).constraints:
         if constraint.enabled:
             return True
     return False
+
+def select_bones(target_armature, target_bones):
+    for target_bone in target_bones:
+        pose_bone(target_armature, target_bone).bone.select = True
 
 
 def apply_q(target_armature, q):

@@ -76,4 +76,18 @@ def get_urmoco_panel(config: Config):
             else:
                 self.draw_initialised(state)
 
+            self.layout.label(text="Animation:")
+            row = self.layout.row()
+            row.enabled = state is not Mode.AWAIT_RESPONSE
+            ik_enabled = (
+                bpy.data.objects[ARMATURE_MODEL]
+                .pose.bones[BONE_WRIST_JOINT_3]
+                .constraints[CONSTRAINT_IK]
+                .enabled
+            )
+            if ik_enabled:
+                row.operator("urmoco.use_fk_rig")
+            else:
+                row.operator("urmoco.use_ik_rig")
+
     return URMocoPanel
